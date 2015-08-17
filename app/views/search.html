@@ -1,0 +1,39 @@
+<form name="searchForm" class="form-horizontal"  novalidate ng-init="load()" ng-controller="SearchCtrl" ng-submit="submit()"
+      data-toggle="validator">
+    <div class="container-fluid">
+        <div class="panel">
+            <div class="form-group has-success has-feedback ">
+                <div class=" has-warning bg-warning input-lg" ng-hide="true"><p>Repository entered is not listed</p>
+                </div>
+
+                <!-- SEARCH FIELD -->
+                <div class="form-group">
+                    <label class="control-label input-lg" ng-model="searchLabel" id="searchLabel" for="name">{{searchLabel}}</label>
+                    <input type="text" name="name" class="form-control" id="name" ng-model="name" auto-focus
+                           placeholder="Search Name" required>
+
+                    <p ng-show="searchForm.name.$invalid && !searchForm.name.$pristine" class="help-block">
+                        search input is required.</p>
+                </div>
+
+                <br>
+                <!-- SEARCH BUTTON -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" ng-disabled="searchForm.$invalid"
+                            ng-click="submit(searchForm)" id="submit" value="Submit"> Submit
+                    </button>
+                </div>
+
+                <!-- LIST -->
+                <div class="row" ng-show="submit">
+                    <div class="panel"
+                         ng-repeat=" repository in repositoryList track by $index">
+                        {{repository}}
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
